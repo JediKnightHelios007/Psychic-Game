@@ -22,7 +22,7 @@
       var wins = 0;
       var losses = 0;
       var guesses = 9;
-      var letters;
+      var letters ='';
   
       // When the user presses a key, it will run the following function...
       document.onkeyup = function(event) {
@@ -43,15 +43,21 @@
           if (userGuess === computerGuess) {
             wins++;
             guesses--;
+            letters = letters + userGuess;  
           }
           if (userGuess  !== computerGuess) {
             losses++;
             guesses--;
+            letters = letters + userGuess; 
           }
 
           // Here we create the HTML that will be injected into our div and displayed on the page.
           var html = "<p>Press any letter to start the game</p>" +
-          "<p>wins: " + wins + "</p>"  + "<p>losses: " + guesses + "</p>"  + "<p>losses: " + guesses + "</p>";
+          "<p>wins: " + wins + "</p>"  + "<p>losses: " + guesses + "</p>"  + "<p>Guesses so far: " + letters + "</p>";
+
+          if(guesses === 0){
+            document.write("It is over");
+          }
 
           // Injecting the HTML we just created into our div and updating the game information on our page.
           document.querySelector("#game").innerHTML = html;
