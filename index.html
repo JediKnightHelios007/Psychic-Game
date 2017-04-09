@@ -21,13 +21,19 @@
       // Variables for tracking our wins, losses and ties. They begin at 0.
       var wins = 0;
       var losses = 0;
+      var guesses = 9;
+      var letters;
   
       // When the user presses a key, it will run the following function...
       document.onkeyup = function(event) {
 
+      //  if(guesses === 0){
+        //  document.write("No more guesses left");
+        //}
+
         // Determine which key was pressed
         var userGuess = event.key;
-
+        //document.write(" ");
         // Sets the computerGuess variable equal to a random choice from the computerChoice array.
         var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
@@ -36,20 +42,24 @@
 
           if (userGuess === computerGuess) {
             wins++;
+            guesses--;
           }
           if (userGuess  !== computerGuess) {
             losses++;
+            guesses--;
           }
 
           // Here we create the HTML that will be injected into our div and displayed on the page.
-          var html = "<p>Press r, p or s to start playing!</p>" +
-          "<p>wins: " + wins + "</p>" +
-          "<p>losses: " + losses + "</p>";
+          var html = "<p>Press any letter to start the game</p>" +
+          "<p>wins: " + wins + "</p>"  + "<p>losses: " + guesses + "</p>"  + "<p>losses: " + guesses + "</p>";
 
           // Injecting the HTML we just created into our div and updating the game information on our page.
           document.querySelector("#game").innerHTML = html;
-        };
-      }
+        }
+     //    if(guesses === 0){
+
+       //  }
+      };
 
     </script>
 
